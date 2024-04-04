@@ -1,13 +1,13 @@
-const Comandas = require("../models/Comandas")
+const Funcionario = require("../models/Funcionario")
 
-const ComandasController = {
+const FuncionarioController = {
     getAll: async (req, res) => {
-        res.json( await Comandas.find() )
+        res.json( await Funcionario.find() )
     },
     get: async (req, res) => {
 
         try {
-            res.json( await Comandas.findById(req.params.id) )
+            res.json( await Funcionario.findById(req.params.id) )
         } catch (error) {
             res.status(404).json({error: 'Registro não encontrado'})
         }
@@ -16,21 +16,21 @@ const ComandasController = {
     },
     create: async (req, res) => {
         try {
-            res.json( await Comandas.create(req.body) )
+            res.json( await Funcionario.create(req.body) )
         } catch (error) {
             res.status(400).json({error})
         }
     },
     update: async (req, res) => {
         try {
-            res.json( await Comandas.findByIdAndUpdate(req.params.id, req.body) )
+            res.json( await Funcionario.findByIdAndUpdate(req.params.id, req.body) )
         } catch (error) {
             res.status(404).json({error: 'Registro não encontrado'})
         }
     },
     delete: async (req, res) => {
         try {
-            res.json( await Comandas.findByIdAndDelete(req.params.id) )
+            res.json( await Funcionario.findByIdAndDelete(req.params.id) )
         } catch (error) {
             res.status(404).json({error: 'Registro não encontrado'})
         }
@@ -39,4 +39,4 @@ const ComandasController = {
 
 }
 
-module.exports = ComandasController
+module.exports = FuncionarioController
