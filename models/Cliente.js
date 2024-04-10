@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
-    nome: String
-})
+    nome: String, 
+}, {timestamps: true})
 
 const Cliente = mongoose.model('Cliente', schema)
 

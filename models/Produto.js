@@ -6,23 +6,24 @@ const schema = mongoose.Schema({
         required: true,
         minLength: 2,
         maxLength: 100,
+        uppercase: true,
         trim: true
+
     },
     preco: {
-        type: Number,
+        type: String,
         default: 0,
         min: [0, 'Mais fácil'],
-        match: /^\d+(\.\d{1,2})?$/
+        match: /^\d+(\.\d{1,2})?$/,
     },
-
     tamanho: String,
     tipo: {
-        String,
-        enum: ["Bebidas", "Pizzas", "Massas", "Sobremesas"]
+    type: String,
+    enum: ["Bebidas", "Pizza", "Massas", "Sobremesas",]
     },
     ingredientes: [String]
-})
 
+}, {timestamps: true})
 const Produto = mongoose.model('Produto', schema)
 
 module.exports = Produto

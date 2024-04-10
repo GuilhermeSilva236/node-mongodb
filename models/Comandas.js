@@ -1,16 +1,45 @@
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
-    nome: String,
+    mesa: {
+        type: String,
+        required: true
+    },
+    funcionario: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Funcionario',
+        required: true
+    },
+    cliente: {
+        type: String,
+        required: true
+    },
+    produtos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Produto'
+    }],
+    total: {
+        type: Number,
+        default: 0
+    },
+    status: {
+        type: String,
+        enum: ['Aberta', 'Fechada'],
+        default: 'Aberta'
+    },
+    forma_pagamento: {
+        type: String,
+        enum: ['Dinheiro', 'Cartão', 'Transferência'],
+        required: true
+    },
+    data_pagamento: {
+        type: Date
+    },
     data: {
         type: Date,
-        required: true,
-        set: (value) => {
-            const [dia, mes, ano] = value.split('/')
-            return '${ano}-${mes}-${dia}'
-        }
+        default: Date.now
     }
-})
+}, { timestamps: true });
 
 const Comanda = mongoose.model('Comanda', schema)
 
